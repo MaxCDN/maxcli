@@ -3,12 +3,6 @@ maxpurge
 
 This provides a simple interface for purging pull zones and their files.
 
-> TODO:
->
-> - support a list of zones
-> - support no zone, which purges all zones
-> - support a list of files
-
 Installing:
 -----------
 
