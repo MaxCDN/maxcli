@@ -30,7 +30,7 @@ This can also be installed for system wide use if your `GOBIN` is set via the fo
 # via 'go get' && 'go install'
 ##
 
-go get github.com/jmervine/maxcdn-tools
+go get github.com/jmervine/maxcdn-tools/{{tool}}
 go install github.com/jmervine/maxcdn-tools/{{tool}}
 
 # manually
