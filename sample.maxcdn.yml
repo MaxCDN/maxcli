@@ -1,0 +1,15 @@
+# Update this file with your alias, token and secret and remove to ~/.maxcdn.yml
+# to avoid having to enter this information with each tool run.
+---
+alias: YOUR_ALIAS
+token: YOUR_TOKEN
+secret: YOUR_SECRET
+
+# tool specific configurations
+###
+
+# maxcurl
+pretty: true
+
+# maxpurge
+zone: YOUR_ZONE_ID
