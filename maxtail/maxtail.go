@@ -12,8 +12,8 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/jmervine/cli"
 	"github.com/MaxCDN/go-maxcdn"
+	"github.com/jmervine/cli"
 	"gopkg.in/yaml.v1"
 )
 
