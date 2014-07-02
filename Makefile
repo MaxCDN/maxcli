@@ -10,17 +10,28 @@ PLATFORMS=darwin/386 \
 			windows/386 \
 			windows/amd64
 
-BUILD_TOOLS=$(shell find ./ -maxdepth 1 -type d | grep max | sed 's/\./build/')
-INSTALL_TOOLS=$(shell find ./ -maxdepth 1 -type d | grep max | sed 's/\./install/')
+# todo: find a cleaner way
+BUILD_TOOLS=$(shell find ./ -maxdepth 1 -type d -name "max*" | sed 's/\./build/')
+FORMAT_TOOLS=$(shell find ./ -maxdepth 1 -type d -name "max*" | sed 's/\./format/')
+INSTALL_TOOLS=$(shell find ./ -maxdepth 1 -type d -name "max*" | sed 's/\./install/')
 
 # tests
 ###
-test: .PHONY
-	@./_test/shunt.sh ./_test/tests.sh
+test: format .PHONY
+	# Running Tests
+	./_test/shunt.sh --verbose ./_test/*_test.sh
+
+# format
+###
+format: $(FORMAT_TOOLS) format/common .PHONY
+
+format/%: .PHONY
+	# Formatting: $(shell basename "$@")
+	@cd $(shell basename "$@"); go fmt
 
 # build tools
 ###
-build: $(BUILD_TOOLS) .PHONY
+build: format $(BUILD_TOOLS) .PHONY
 
 install: $(INSTALL_TOOLS) .PHONY
 
