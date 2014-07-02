@@ -13,6 +13,11 @@ PLATFORMS=darwin/386 \
 BUILD_TOOLS=$(shell find ./ -maxdepth 1 -type d | grep max | sed 's/\./build/')
 INSTALL_TOOLS=$(shell find ./ -maxdepth 1 -type d | grep max | sed 's/\./install/')
 
+# tests
+###
+test: .PHONY
+	@./_test/shunt.sh ./_test/tests.sh
+
 # build tools
 ###
 build: $(BUILD_TOOLS) .PHONY
