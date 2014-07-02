@@ -12,8 +12,8 @@ This can also be installed for system wide use if your `GOBIN` is set via the fo
 # via 'go get' && 'go install'
 ##
 
-$ go get github.com/maxcdn/maxcdn-tools/maxreport
-$ go install github.com/maxcdn/maxcdn-tools/maxreport
+$ go get github.com/MaxCDN/maxcdn-tools/maxreport
+$ go install github.com/MaxCDN/maxcdn-tools/maxreport
 $ maxreport -h
 Usage: maxreport [arguments...] PATH
 # ...
@@ -21,7 +21,7 @@ Usage: maxreport [arguments...] PATH
 # manually
 ##
 
-git clone https://github.com/maxcdn/maxcdn-tools
+git clone https://github.com/MaxCDN/maxcdn-tools
 cd maxcdn-tools
 make build/maxreport install/maxreport
 ```

@@ -3,7 +3,7 @@ maxcdn tools
 
 Collection of CLI tools for interfacing with MaxCDN's REST API
 
-> Built using [github.com/maxcdn/go-maxcdn](https://github.com/maxcdn/go-maxcdn).
+> Built using [github.com/MaxCDN/go-maxcdn](https://github.com/MaxCDN/go-maxcdn).
 
 Configuration
 -------------
@@ -30,13 +30,13 @@ This can also be installed for system wide use if your `GOBIN` is set via the fo
 # via 'go get' && 'go install'
 ##
 
-go get github.com/maxcdn/maxcdn-tools/{{tool}}
-go install github.com/maxcdn/maxcdn-tools/{{tool}}
+go get github.com/MaxCDN/maxcdn-tools/{{tool}}
+go install github.com/MaxCDN/maxcdn-tools/{{tool}}
 
 # manually
 ##
 
-git clone https://github.com/maxcdn/maxcdn-tools
+git clone https://github.com/MaxCDN/maxcdn-tools
 cd maxcdn-tools
 
 # build and install all tools
@@ -71,49 +71,49 @@ make build/all/{{tool}}
 Here's what's available for each tool:
 
 - maxreport
-    - [linux-386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxreport/builds/linux/386/maxpurge)
-    - [linux-amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxreport/builds/linux/amd64/maxpurge)
-    - [linux-arm](https://github.com/maxcdn/maxcdn-tools/raw/master/maxreport/builds/linux/arm/maxpurge)
-    - [darwin-386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxreport/builds/darwin/386/maxpurge)
-    - [darwin-amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxreport/builds/darwin/amd64/maxpurge)
-    - [freebsd-386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxreport/builds/freebsd/386/maxpurge)
-    - [freebsd-amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxreport/builds/freebsd/amd64/maxpurge)
-    - [freebsd-arm](https://github.com/maxcdn/maxcdn-tools/raw/master/maxreport/builds/freebsd/arm/maxpurge)
-    - [windows-386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxreport/builds/windows/386/maxpurge.exe)
-    - [windows-amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxreport/builds/windows/amd64/maxpurge.exe)
+    - [linux-386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxreport/builds/linux/386/maxpurge)
+    - [linux-amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxreport/builds/linux/amd64/maxpurge)
+    - [linux-arm](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxreport/builds/linux/arm/maxpurge)
+    - [darwin-386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxreport/builds/darwin/386/maxpurge)
+    - [darwin-amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxreport/builds/darwin/amd64/maxpurge)
+    - [freebsd-386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxreport/builds/freebsd/386/maxpurge)
+    - [freebsd-amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxreport/builds/freebsd/amd64/maxpurge)
+    - [freebsd-arm](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxreport/builds/freebsd/arm/maxpurge)
+    - [windows-386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxreport/builds/windows/386/maxpurge.exe)
+    - [windows-amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxreport/builds/windows/amd64/maxpurge.exe)
 - maxpurge
-    - [linux/386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxpurge/builds/linux/386/maxpurge)
-    - [linux/amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxpurge/builds/linux/amd64/maxpurge)
-    - [linux/arm](https://github.com/maxcdn/maxcdn-tools/raw/master/maxpurge/builds/linux/arm/maxpurge)
-    - [darwin/386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxpurge/builds/darwin/386/maxpurge)
-    - [darwin/amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxpurge/builds/darwin/amd64/maxpurge)
-    - [freebsd/386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxpurge/builds/freebsd/386/maxpurge)
-    - [freebsd/amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxpurge/builds/freebsd/amd64/maxpurge)
-    - [freebsd/arm](https://github.com/maxcdn/maxcdn-tools/raw/master/maxpurge/builds/freebsd/arm/maxpurge)
-    - [windows/386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxpurge/builds/windows/386/maxpurge.exe)
-    - [windows/amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxpurge/builds/windows/amd64/maxpurge.exe)
+    - [linux/386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxpurge/builds/linux/386/maxpurge)
+    - [linux/amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxpurge/builds/linux/amd64/maxpurge)
+    - [linux/arm](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxpurge/builds/linux/arm/maxpurge)
+    - [darwin/386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxpurge/builds/darwin/386/maxpurge)
+    - [darwin/amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxpurge/builds/darwin/amd64/maxpurge)
+    - [freebsd/386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxpurge/builds/freebsd/386/maxpurge)
+    - [freebsd/amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxpurge/builds/freebsd/amd64/maxpurge)
+    - [freebsd/arm](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxpurge/builds/freebsd/arm/maxpurge)
+    - [windows/386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxpurge/builds/windows/386/maxpurge.exe)
+    - [windows/amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxpurge/builds/windows/amd64/maxpurge.exe)
 - maxcurl
-    - [linux/386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxcurl/builds/linux/386/maxcurl)
-    - [linux/amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxcurl/builds/linux/amd64/maxcurl)
-    - [linux/arm](https://github.com/maxcdn/maxcdn-tools/raw/master/maxcurl/builds/linux/arm/maxcurl)
-    - [darwin/386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxcurl/builds/darwin/386/maxcurl)
-    - [darwin/amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxcurl/builds/darwin/amd64/maxcurl)
-    - [freebsd/386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxcurl/builds/freebsd/386/maxcurl)
-    - [freebsd/amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxcurl/builds/freebsd/amd64/maxcurl)
-    - [freebsd/arm](https://github.com/maxcdn/maxcdn-tools/raw/master/maxcurl/builds/freebsd/arm/maxcurl)
-    - [windows/386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxcurl/builds/windows/386/maxcurl.exe)
-    - [windows/amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxcurl/builds/windows/amd64/maxcurl.exe)
+    - [linux/386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxcurl/builds/linux/386/maxcurl)
+    - [linux/amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxcurl/builds/linux/amd64/maxcurl)
+    - [linux/arm](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxcurl/builds/linux/arm/maxcurl)
+    - [darwin/386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxcurl/builds/darwin/386/maxcurl)
+    - [darwin/amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxcurl/builds/darwin/amd64/maxcurl)
+    - [freebsd/386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxcurl/builds/freebsd/386/maxcurl)
+    - [freebsd/amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxcurl/builds/freebsd/amd64/maxcurl)
+    - [freebsd/arm](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxcurl/builds/freebsd/arm/maxcurl)
+    - [windows/386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxcurl/builds/windows/386/maxcurl.exe)
+    - [windows/amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxcurl/builds/windows/amd64/maxcurl.exe)
 - maxtail
-    - [linux/386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxtail/builds/linux/386/maxtail)
-    - [linux/amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxtail/builds/linux/amd64/maxtail)
-    - [linux/arm](https://github.com/maxcdn/maxcdn-tools/raw/master/maxtail/builds/linux/arm/maxtail)
-    - [darwin/386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxtail/builds/darwin/386/maxtail)
-    - [darwin/amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxtail/builds/darwin/amd64/maxtail)
-    - [freebsd/386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxtail/builds/freebsd/386/maxtail)
-    - [freebsd/amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxtail/builds/freebsd/amd64/maxtail)
-    - [freebsd/arm](https://github.com/maxcdn/maxcdn-tools/raw/master/maxtail/builds/freebsd/arm/maxtail)
-    - [windows/386](https://github.com/maxcdn/maxcdn-tools/raw/master/maxtail/builds/windows/386/maxtail.exe)
-    - [windows/amd64](https://github.com/maxcdn/maxcdn-tools/raw/master/maxtail/builds/windows/amd64/maxtail.exe)
+    - [linux/386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxtail/builds/linux/386/maxtail)
+    - [linux/amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxtail/builds/linux/amd64/maxtail)
+    - [linux/arm](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxtail/builds/linux/arm/maxtail)
+    - [darwin/386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxtail/builds/darwin/386/maxtail)
+    - [darwin/amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxtail/builds/darwin/amd64/maxtail)
+    - [freebsd/386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxtail/builds/freebsd/386/maxtail)
+    - [freebsd/amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxtail/builds/freebsd/amd64/maxtail)
+    - [freebsd/arm](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxtail/builds/freebsd/arm/maxtail)
+    - [windows/386](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxtail/builds/windows/386/maxtail.exe)
+    - [windows/amd64](https://github.com/MaxCDN/maxcdn-tools/raw/master/maxtail/builds/windows/amd64/maxtail.exe)
 
 > Note: As of yet, these binaries have not been tested on all OS/ARCH combinations.
 

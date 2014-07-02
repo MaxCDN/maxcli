@@ -13,7 +13,7 @@ import (
 	"time"
 
 	"github.com/jmervine/cli"
-	"github.com/maxcdn/go-maxcdn"
+	"github.com/MaxCDN/go-maxcdn"
 	"gopkg.in/yaml.v1"
 )
 
