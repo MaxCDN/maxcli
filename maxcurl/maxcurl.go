@@ -12,7 +12,7 @@ import (
 	"text/template"
 
 	"github.com/jmervine/cli"
-	"github.com/jmervine/go-maxcdn"
+	"github.com/maxcdn/go-maxcdn"
 	"gopkg.in/yaml.v1"
 )
 
