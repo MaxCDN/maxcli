@@ -47,6 +47,7 @@ build/all: .PHONY
 build/%: .PHONY
 	# Building: $(shell basename "$@")
 	cd $(shell basename "$@"); go build $(shell basename "$@").go
+	cd $(shell basename "$@"); go build $(shell basename "$@").go
 
 install/%: .PHONY
 	# Installing: $(shell basename "$@")
@@ -98,6 +99,8 @@ deploy: $(DEPLOY_TOOLS) .PHONY
 
 deploy/%: .PHONY
 	@which "aws" > /dev/null || (echo "ERROR: install 'awscli' tools." && exit 1)
-	aws s3 cp $(shell basename "$@")/builds/ s3://maxcli/$(shell basename "$@")/ --recursive
+	aws s3 cp $(shell basename "$@")/builds/ s3://maxcli/$(shell basename "$@")/ \
+		--recursive \
+		--acl public-read
 
 .PHONY:
