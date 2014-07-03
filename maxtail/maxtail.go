@@ -16,7 +16,7 @@ const timeLayout = "2006-01-02T15:04:05"
 
 const (
 	name    = "maxtail"
-	version = "1.0.0"
+	version = "1.0.1"
 )
 
 var config common.Config
