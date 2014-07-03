@@ -3,6 +3,10 @@ maxtail
 
 "tail" (sort of) MaxCDN endpoints, return raw json output.
 
+### Work in progress.
+
+**This currently isn't working as intended.**
+
 Installing:
 -----------
 
