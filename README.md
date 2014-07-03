@@ -5,6 +5,10 @@ Collection of CLI tools for interfacing with MaxCDN's REST API
 
 > Built using [github.com/MaxCDN/go-maxcdn](https://github.com/MaxCDN/go-maxcdn).
 
+#### Note
+
+`maxtail` currently isn't working as intended. See [issue #2](https://github.com/MaxCDN/maxcdn-tools/issues/2) for updates.
+
 Configuration
 -------------
 
