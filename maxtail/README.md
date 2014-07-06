@@ -70,8 +70,23 @@ Sample configuration:
     pretty: true
 ```
 
-Installing:
------------
+Download:
+---------
+
+- [linux/386](http://get.maxcdn.com/maxtail/linux/386/maxtail) ([md5](http://get.maxcdn.com/maxtail/linux/386/maxtail.md5))
+- [linux/amd64](http://get.maxcdn.com/maxtail/linux/amd64/maxtail) ([md5](http://get.maxcdn.com/maxtail/linux/amd64/maxtail.md5))
+- [linux/arm](http://get.maxcdn.com/maxtail/linux/arm/maxtail) ([md5](http://get.maxcdn.com/maxtail/linux/arm/maxtail.md5))
+- [darwin/386](http://get.maxcdn.com/maxtail/darwin/386/maxtail) ([md5](http://get.maxcdn.com/maxtail/darwin/386/maxtail.md5))
+- [darwin/amd64](http://get.maxcdn.com/maxtail/darwin/amd64/maxtail) ([md5](http://get.maxcdn.com/maxtail/darwin/amd64/maxtail.md5))
+- [freebsd/386](http://get.maxcdn.com/maxtail/freebsd/386/maxtail) ([md5](http://get.maxcdn.com/maxtail/freebsd/386/maxtail.md5))
+- [freebsd/amd64](http://get.maxcdn.com/maxtail/freebsd/amd64/maxtail) ([md5](http://get.maxcdn.com/maxtail/freebsd/amd64/maxtail.md5))
+- [freebsd/arm](http://get.maxcdn.com/maxtail/freebsd/arm/maxtail) ([md5](http://get.maxcdn.com/maxtail/freebsd/arm/maxtail.md5))
+- [windows/386](http://get.maxcdn.com/maxtail/windows/386/maxtail.exe) ([md5](http://get.maxcdn.com/maxtail/windows/386/maxtail.exe.md5))
+- [windows/amd64](http://get.maxcdn.com/maxtail/windows/amd64/maxtail.exe) ([md5](http://get.maxcdn.com/maxtail/windows/amd64/maxtail.exe.md5))
+
+
+Build and Install:
+------------------
 
 This can also be installed for system wide use if your `GOBIN` is set via the following:
 
