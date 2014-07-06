@@ -18,6 +18,8 @@ import (
 )
 
 const timeLayout = "2006-01-02T15:04:05"
+const timeDelay = 15 * time.Second
+const minInterval = 5
 
 var config Config
 
@@ -47,6 +49,13 @@ Formatting Notes:
     'ClientIp CacheStatus ZoneID [Time] "Uri" '
     'Status Bytes Referer UserAgent OriginTime'
 
+Alpha Notes:
+
+- There is a built in 15 second delay on events.
+- Does not currently show all events while in follow mode. However,
+  the more you filters applied, the closer it will be to displaying
+  all events.
+
 Credential Notes:
 
 'alias', 'token' and/or 'secret' can be set via exporting them to
@@ -75,7 +84,7 @@ Sample configuration:
 
 	app := cli.NewApp()
 	app.Name = "maxtail"
-	app.Version = "1.0.1-alpha"
+	app.Version = "0.0.1-alpha"
 
 	cli.HelpPrinter = helpPrinter
 	cli.VersionPrinter = versionPrinter
@@ -87,7 +96,7 @@ Sample configuration:
 		cli.StringFlag{"secret, s", "", "[required] consumer secret"},
 		cli.StringFlag{"format, f", "raw", "nginx, raw, json, jsonpp"},
 		cli.StringFlag{"zone, z", "", "zone to be tailed (default: all)"},
-		cli.IntFlag{"interval, i", 5, "poll interval in seconds (min: 1)"},
+		cli.IntFlag{"interval, i", 5, "poll interval in seconds (min: 5)"},
 		cli.BoolFlag{"no-follow, n", "print interval and exit"},
 		cli.BoolFlag{"quiet, q", "hide 'empty' messages"},
 		cli.BoolFlag{"verbose", "display verbose http transport information"},
@@ -128,8 +137,8 @@ Sample configuration:
 		}
 
 		interval := c.Int("interval")
-		if interval < 1 {
-			interval = 1
+		if interval < minInterval {
+			interval = minInterval
 		}
 
 		config.Interval = time.Duration(int64(interval) * int64(time.Second))
@@ -156,10 +165,14 @@ func main() {
 	max.Verbose = config.Verbose
 
 	for {
-		start := time.Now().UTC().Add(-config.Interval).Format(timeLayout)
+		adj := config.Interval + timeDelay
+		now := time.Now().UTC()
+		start := now.Add(-adj).Format(timeLayout)
+		end := now.Add(-timeDelay).Format(timeLayout)
 
 		form := url.Values{}
 		form.Set("start", start)
+		form.Set("end", end)
 		form.Set("sort", "oldest")
 
 		if config.Zone != "" {
