@@ -18,6 +18,8 @@ import (
 )
 
 const timeLayout = "2006-01-02T15:04:05"
+const timeDelay = 15 * time.Second
+const minInterval = 5
 
 var config Config
 
@@ -47,6 +49,13 @@ Formatting Notes:
     'ClientIp CacheStatus ZoneID [Time] "Uri" '
     'Status Bytes Referer UserAgent OriginTime'
 
+Alpha Notes:
+
+- There is a built in 15 second delay on events.
+- Does not currently show all events while in follow mode. However,
+  the more you filters applied, the closer it will be to displaying
+  all events.
+
 Credential Notes:
 
 'alias', 'token' and/or 'secret' can be set via exporting them to
@@ -75,7 +84,7 @@ Sample configuration:
 
 	app := cli.NewApp()
 	app.Name = "maxtail"
-	app.Version = "1.0.0"
+	app.Version = "0.0.1-alpha"
 
 	cli.HelpPrinter = helpPrinter
 	cli.VersionPrinter = versionPrinter
@@ -87,7 +96,8 @@ Sample configuration:
 		cli.StringFlag{"secret, s", "", "[required] consumer secret"},
 		cli.StringFlag{"format, f", "raw", "nginx, raw, json, jsonpp"},
 		cli.StringFlag{"zone, z", "", "zone to be tailed (default: all)"},
-		cli.IntFlag{"interval, i", 60, "poll interval in seconds (min: 5)"},
+		cli.IntFlag{"interval, i", 5, "poll interval in seconds (min: 5)"},
+		cli.BoolFlag{"no-follow, n", "print interval and exit"},
 		cli.BoolFlag{"quiet, q", "hide 'empty' messages"},
 		cli.BoolFlag{"verbose", "display verbose http transport information"},
 	}
@@ -127,12 +137,13 @@ Sample configuration:
 		}
 
 		interval := c.Int("interval")
-		if interval < 5 {
-			interval = 5
+		if interval < minInterval {
+			interval = minInterval
 		}
 
 		config.Interval = time.Duration(int64(interval) * int64(time.Second))
 
+		config.NoFollow = c.Bool("no-follow")
 		config.Quiet = c.Bool("quiet")
 
 		config.Verbose = c.Bool("verbose")
@@ -153,10 +164,16 @@ func main() {
 	max := maxcdn.NewMaxCDN(config.Alias, config.Token, config.Secret)
 	max.Verbose = config.Verbose
 
-	tailer := func(s, e string) {
+	for {
+		adj := config.Interval + timeDelay
+		now := time.Now().UTC()
+		start := now.Add(-adj).Format(timeLayout)
+		end := now.Add(-timeDelay).Format(timeLayout)
+
 		form := url.Values{}
-		form.Set("start", s)
-		form.Set("end", e)
+		form.Set("start", start)
+		form.Set("end", end)
+		form.Set("sort", "oldest")
 
 		if config.Zone != "" {
 			form.Set("zone", config.Zone)
@@ -169,59 +186,53 @@ func main() {
 			if !config.Quiet {
 				log.Println("empty ... ")
 			}
-			return
-		}
+		} else {
 
-		/*
-		   Nginx Format
-		   ------------
-		   'ClientIp CacheStatus ZoneID [Time] "Uri" '
-		   'Status Bytes Referer UserAgent OriginTime'
-		*/
+			for _, line := range logs.Records {
+				switch config.Format {
+				case "jsonpp":
+					s, e := json.MarshalIndent(line, "", "\t")
+					if e != nil {
+						log.Printf("%+v\n", e)
+					} else {
+						log.Printf("\n-------------------------\n%s\n\n", s)
+					}
+				case "json":
+					s, e := json.Marshal(line)
+					if e != nil {
+						log.Printf("%+v\n", e)
+					} else {
+						fmt.Printf("%s\n", s)
+					}
+				case "nginx":
+					/*
+					   Nginx Format
+					   ------------
+					   'ClientIp CacheStatus ZoneID [Time] "Uri" '
+					   'Status Bytes Referer UserAgent OriginTime'
+					*/
+					fmt.Printf("%s %s %d [%s] %q %d %d %q %q %.3f\n",
+						line.ClientIp,
+						line.CacheStatus,
+						line.ZoneID,
+						line.Time,
+						line.Uri,
+						line.Status,
+						line.Bytes,
+						line.Referer,
+						line.UserAgent,
+						line.OriginTime)
+				default:
+					log.Printf("%+v\n", line)
+				}
 
-		for _, line := range logs.Records {
-			switch config.Format {
-			case "jsonpp":
-				s, e := json.MarshalIndent(line, "", "\t")
-				if e != nil {
-					log.Printf("%+v\n", e)
-				} else {
-					log.Printf("\n-------------------------\n%s\n\n", s)
-				}
-			case "json":
-				s, e := json.Marshal(line)
-				if e != nil {
-					log.Printf("%+v\n", e)
-				} else {
-					fmt.Printf("%s\n", s)
-				}
-			case "nginx":
-				fmt.Printf("%s %s %d [%s] %q %d %d %q %q %.3f\n",
-					line.ClientIp,
-					line.CacheStatus,
-					line.ZoneID,
-					line.Time,
-					line.Uri,
-					line.Status,
-					line.Bytes,
-					line.Referer,
-					line.UserAgent,
-					line.OriginTime)
-			default:
-				log.Printf("%+v\n", line)
 			}
-
 		}
-	}
 
-	end := time.Now()
-	start := end.Add(-config.Interval)
+		if config.NoFollow {
+			break
+		}
 
-	for {
-		end = start
-		start = start.Add(-config.Interval)
-
-		tailer(start.Format(timeLayout), end.Format(timeLayout))
 		time.Sleep(config.Interval)
 	}
 }
@@ -240,6 +251,7 @@ type Config struct {
 	Interval time.Duration
 	Quiet    bool
 	Verbose  bool
+	NoFollow bool
 }
 
 func LoadConfig(file string) (c Config, e error) {

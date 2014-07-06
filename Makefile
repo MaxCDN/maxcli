@@ -19,45 +19,52 @@ INSTALL_TOOLS=$(shell find ./ -maxdepth 1 -type d -name "max*" | sed 's/\./insta
 # tests
 ###
 test: format .PHONY
-	# Running Tests
 	./_test/shunt.sh --verbose ./_test/*_test.sh
+
+test/%: .PHONY
+	# Running Test: $*
+	./_test/shunt.sh --verbose ./_test/$*_test.sh
 
 # format
 ###
 format: $(FORMAT_TOOLS) .PHONY
 
 format/%: .PHONY
-	# Formatting: $(shell basename "$@")
-	@cd $(shell basename "$@"); go fmt
+	# Formatting: $*
+	@cd $*; go fmt
 
 # build tools
 ###
-build: format $(BUILD_TOOLS) .PHONY
+build: $(BUILD_TOOLS) .PHONY
 
 install: $(INSTALL_TOOLS) .PHONY
 
 build/all/%: .PHONY
-	# exec tools/build-all.sh
-	bash build-all.bash $(shell basename "$@")
+	make format/$*
+	bash build-all.bash $*
 
 build/all: .PHONY
 	# exec tools/build-all.sh
 	bash build-all.bash
 
 build/%: .PHONY
-	# Building: $(shell basename "$@")
-	cd $(shell basename "$@"); go build $(shell basename "$@").go
-	cd $(shell basename "$@"); go build $(shell basename "$@").go
+	# Building: $*
+	make format/$*
+	cd $*; go build $*.go
 
 install/%: .PHONY
-	# Installing: $(shell basename "$@")
+	# Installing: $*
 	@test "$(GOBIN)" || (echo "error: GOBIN must be set"; exit 1)
-	@test -x $(shell basename "$@")/$(shell basename "$@") || (echo "error: run make build[/{{tool}}]"; exit 1)
-	mv $(shell basename "$@")/$(shell basename "$@") $(GOBIN)
+	@test -x $*/$* || (echo "error: run make build[/{{tool}}]"; exit 1)
+	mv $*/$* $(GOBIN)
 
-clean: .PHONY
+clean:
 	# remove previous tools builds
-	@find . -maxdepth 2 -type d -name builds -exec rm -vr {} \;
+	@test -f maxcurl/maxcurl && rm -v maxcurl/maxcurl || true
+	@test -f maxpurge/maxpurge && rm -v maxpurge/maxpurge || true
+	@test -f maxreport/maxreport && rm -v maxreport/maxreport || true
+	@test -f maxtail/maxtail && rm -v maxtail/maxtail || true
+	@find . -maxdepth 2 -type d -name builds -exec rm -vr {} \; || true
 
 # setup and sub-tasks setup go for crosscompiling
 ###
@@ -99,7 +106,7 @@ deploy: $(DEPLOY_TOOLS) .PHONY
 
 deploy/%: .PHONY
 	@which "aws" > /dev/null || (echo "ERROR: install 'awscli' tools." && exit 1)
-	aws s3 cp $(shell basename "$@")/builds/ s3://maxcli/$(shell basename "$@")/ \
+	aws s3 cp $*/builds/ s3://maxcli/$*/ \
 		--recursive \
 		--acl public-read
 
