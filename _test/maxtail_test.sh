@@ -8,8 +8,14 @@ function run_tests {
 
   if test "$ALIAS" && test "$TOKEN" && test "$SECRET"
   then # Run functional tests.
-    refute_grep "go run $tool --no-follow -i 5" "Usage" \
-      "$tool: doesn't display usage"
+
+    # run with a few filters
+    output=`go run $tool -i 86400 -n -f nginx --status 200 --ssl nossl`
+
+    refute_grep "echo '$output'" "Usage" "$tool: display usage"
+
+    refute_grep "echo $output" " 404 " \
+      "$tool: does not have status code 404"
   fi
 }
 

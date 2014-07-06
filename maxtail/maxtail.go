@@ -39,15 +39,49 @@ Options:
 
 Formatting Notes:
 
-  "raw"    is basic print of struct.
-  "jsonpp" is multiline human readable json output.
-  "json"   is single-line parseable json output.
-  "nginx"  emulates nginx's default log format...
+- "raw"    is basic print of struct.
+- "jsonpp" is multiline human readable json output.
+- "json"   is single-line parseable json output.
+- "nginx"  emulates nginx's default log format...
 
     Nginx Format
     ------------
     'ClientIp CacheStatus ZoneID [Time] "Uri" '
     'Status Bytes Referer UserAgent OriginTime'
+
+Filter Notes:
+
+- "zones":
+    The specific zones whose requests you want to pull.  Separate
+    multiple zone ids by comma.
+- "uri":
+    Use this filter to view requests made for a specific resource
+    (or group of resources). You can do a literal match or regular
+    expression in this field (i.e. '/images/header.png' or
+    'regex:/images/').
+- "status":
+    The specific HTTP status code responses you want to pull.
+    Separate multiple HTTP status codes by comma (i.e. 200,201,304).
+- "ssl":
+    Use this filter to distinguish between SSL and non-SSL traffic
+    (choose nossl, ssl or both).
+- "ua":
+    Filter logs by specific user agents. You can do a literal match
+    or regular expression in this field (i.e. 'Python MaxCDN API
+    Client' or 'regex:Chrome').
+- "referer":
+    Filter logs by a specific referer. You can do a literal match or
+    regular expression in this field (i.e. 'www.maxcdn.com' or
+    'regex:maxcdn.com').
+- "pop":
+    Filter logs by specific POPs (Points Of Presence), use comma
+    separation for multiple POPs.
+- "qs":
+    Filter logs by a specific query string. You can do a literal
+    match or regular expression in this field (i.e. 'width=600' or
+    'regex:width').
+
+See https://docs.maxcdn.com/#get-raw-logs for full details.
 
 Alpha Notes:
 
@@ -84,7 +118,7 @@ Sample configuration:
 
 	app := cli.NewApp()
 	app.Name = "maxtail"
-	app.Version = "0.0.1-alpha"
+	app.Version = "0.0.2-alpha"
 
 	cli.HelpPrinter = helpPrinter
 	cli.VersionPrinter = versionPrinter
@@ -95,11 +129,20 @@ Sample configuration:
 		cli.StringFlag{"token, t", "", "[required] consumer token"},
 		cli.StringFlag{"secret, s", "", "[required] consumer secret"},
 		cli.StringFlag{"format, f", "raw", "nginx, raw, json, jsonpp"},
-		cli.StringFlag{"zone, z", "", "zone to be tailed (default: all)"},
 		cli.IntFlag{"interval, i", 5, "poll interval in seconds (min: 5)"},
 		cli.BoolFlag{"no-follow, n", "print interval and exit"},
 		cli.BoolFlag{"quiet, q", "hide 'empty' messages"},
 		cli.BoolFlag{"verbose", "display verbose http transport information"},
+
+		// Filters
+		cli.StringFlag{"zones", "", "filter: by zone(s)"},
+		cli.StringFlag{"uri", "", "filter: uri"},
+		cli.StringFlag{"status", "", "filter: status"},
+		cli.StringFlag{"ssl", "", "filter: ssl"},
+		cli.StringFlag{"ua", "", "filter: user agent"},
+		cli.StringFlag{"referer", "", "filter: referer"},
+		cli.StringFlag{"pop", "", "filter: pop"},
+		cli.StringFlag{"qs", "", "filter: query string"},
 	}
 
 	app.Action = func(c *cli.Context) {
@@ -132,8 +175,36 @@ Sample configuration:
 			config.Format = v
 		}
 
-		if v := c.String("zone"); v != "" {
-			config.Zone = v
+		if v := c.String("zones"); v != "" {
+			config.ZonesFilter = v
+		}
+
+		if v := c.String("uri"); v != "" {
+			config.UriFilter = v
+		}
+
+		if v := c.String("status"); v != "" {
+			config.StatusFilter = v
+		}
+
+		if v := c.String("ssl"); v != "" {
+			config.SSLFilter = v
+		}
+
+		if v := c.String("ua"); v != "" {
+			config.UAFilter = v
+		}
+
+		if v := c.String("referer"); v != "" {
+			config.RefFilter = v
+		}
+
+		if v := c.String("pop"); v != "" {
+			config.POPFilter = v
+		}
+
+		if v := c.String("qs"); v != "" {
+			config.QSFilter = v
 		}
 
 		interval := c.Int("interval")
@@ -175,8 +246,36 @@ func main() {
 		form.Set("end", end)
 		form.Set("sort", "oldest")
 
-		if config.Zone != "" {
-			form.Set("zone", config.Zone)
+		if config.ZonesFilter != "" {
+			form.Set("zones", config.ZonesFilter)
+		}
+
+		if config.UriFilter != "" {
+			form.Set("uri", config.UriFilter)
+		}
+
+		if config.SSLFilter != "" {
+			form.Set("ssl", config.SSLFilter)
+		}
+
+		if config.StatusFilter != "" {
+			form.Set("status", config.StatusFilter)
+		}
+
+		if config.UAFilter != "" {
+			form.Set("user_agent", config.UAFilter)
+		}
+
+		if config.POPFilter != "" {
+			form.Set("pop", config.POPFilter)
+		}
+
+		if config.QSFilter != "" {
+			form.Set("query_string", config.QSFilter)
+		}
+
+		if config.RefFilter != "" {
+			form.Set("referer", config.RefFilter)
 		}
 
 		logs, err := max.GetLogs(form)
@@ -247,11 +346,20 @@ type Config struct {
 	Token    string `yaml: token,omitempty`
 	Secret   string `yaml: secret,omitempty`
 	Format   string `yaml: format,omitempty`
-	Zone     string `yaml: zone,omitempty`
 	Interval time.Duration
 	Quiet    bool
 	Verbose  bool
 	NoFollow bool
+
+	// Filters
+	ZonesFilter  string
+	UriFilter    string
+	SSLFilter    string
+	StatusFilter string
+	UAFilter     string
+	POPFilter    string
+	QSFilter     string
+	RefFilter    string
 }
 
 func LoadConfig(file string) (c Config, e error) {
