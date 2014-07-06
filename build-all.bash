@@ -34,5 +34,6 @@ do
 
     echo "GOOS=$goos GOARCH=$goarch go build -x -o $target $src"
     GOOS=$goos GOARCH=$goarch go build -x -o $target $src
+    md5sum $target | tee $target.md5
   done
 done
