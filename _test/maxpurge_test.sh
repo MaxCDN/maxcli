@@ -6,10 +6,10 @@ function run_tests {
   output=`go run $tool -h`
   assert_grep "echo '$output'" "Usage" "$tool: display usage"
 
-  output=`go run $tool`
+  output=`go run $tool -z ''`
   assert_grep "echo '$output'" "Usage" "$tool: display usage"
-  assert_grep "echo '$output'" "missing zones value" \
-    "$tool: requires zone"
+  assert_grep "echo '$output'" "Usage" \
+    "$tool: requires valid zone"
 
   if test "$ALIAS" && test "$TOKEN" && test "$SECRET"
   then # Run functional tests.
