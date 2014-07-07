@@ -3,6 +3,8 @@ maxreport
 
 Runs reports against [MaxCDN's Reports API](http://docs.maxcdn.com/#reports-api).
 
+
+** Global Help**
 ```
 $ maxreport --help
 Usage: maxreport [global options] command [command options]
@@ -48,7 +50,10 @@ Notes:
     alias: YOUR_ALIAS
     token: YOUR_TOKEN
     secret: YOUR_SECRET
+```
 
+** Stats Help**
+```
 $ maxreport stats --help
 NAME:
    stats - stats report
@@ -64,7 +69,10 @@ OPTIONS:
    --to 	report end data (YYYY-MM-DD)
    --type, -t 	report type: hourly, daily, monthly
    --csv	output comma seperated values
+```
 
+** Popular Help**
+```
 $ maxreport popular --help
 NAME:
    popular - popular files report
