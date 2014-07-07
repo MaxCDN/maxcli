@@ -4,6 +4,7 @@ maxreport
 Runs reports against [MaxCDN's Reports API](http://docs.maxcdn.com/#reports-api).
 
 ```
+$ maxreport --help
 Usage: maxreport [global options] command [command options]
 
 Commands:
@@ -48,6 +49,37 @@ Notes:
     token: YOUR_TOKEN
     secret: YOUR_SECRET
 
+$ maxreport stats --help
+NAME:
+   stats - stats report
+
+USAGE:
+   command stats [command options] [arguments...]
+
+DESCRIPTION:
+   Gets the total usage statistics for your account, optionally broken up by {report_type}. If no {report_type} is given the request will return the total usage on your account.
+
+OPTIONS:
+   --from 	report start data (YYYY-MM-DD)
+   --to 	report end data (YYYY-MM-DD)
+   --type, -t 	report type: hourly, daily, monthly
+   --csv	output comma seperated values
+
+$ maxreport popular --help
+NAME:
+   popular - popular files report
+
+USAGE:
+   command popular [command options] [arguments...]
+
+DESCRIPTION:
+   Gets the most popularly requested files for your account, grouped into daily statistics.
+
+OPTIONS:
+   --from 		report start data (YYYY-MM-DD)
+   --to 		report end data (YYYY-MM-DD)
+   --top, -t '0'	show top N results, zero shows all
+   --csv		output comma seperated values
 ```
 
 Download:

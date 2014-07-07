@@ -61,7 +61,7 @@ Notes:
 	app := cli.NewApp()
 	app.Name = "maxreport"
 	app.Usage = "Run MaxCDN API Reports"
-	app.Version = "1.0.0"
+	app.Version = "1.0.1"
 	cli.HelpPrinter = helpPrinter
 	cli.VersionPrinter = versionPrinter
 
@@ -108,6 +108,7 @@ Notes:
 		}
 
 		config.Verbose = c.Bool("verbose")
+
 		if v := c.GlobalString("host"); v != "" {
 			config.Host = v
 		}
@@ -127,12 +128,14 @@ Notes:
 				cli.StringFlag{"from", "", "report start data (YYYY-MM-DD)"},
 				cli.StringFlag{"to", "", "report end data (YYYY-MM-DD)"},
 				cli.StringFlag{"type, t", "", "report type: hourly, daily, monthly"},
+				cli.BoolFlag{"csv", "output comma seperated values"},
 			},
 			Action: func(c *cli.Context) {
 				globals(c)
 
 				config.Report = "stats"
 				config.ReportType = c.String("type")
+				config.CSVOut = c.Bool("csv")
 
 				if f := c.String("from"); f != "" {
 					config.Form.Set("from", f)
@@ -151,11 +154,14 @@ Notes:
 				cli.StringFlag{"from", "", "report start data (YYYY-MM-DD)"},
 				cli.StringFlag{"to", "", "report end data (YYYY-MM-DD)"},
 				cli.IntFlag{"top, t", 0, "show top N results, zero shows all"},
+				cli.BoolFlag{"csv", "output comma seperated values"},
 			},
 			Action: func(c *cli.Context) {
 				globals(c)
 
 				config.Report = "popular"
+				config.CSVOut = c.Bool("csv")
+
 				config.Top = c.Int("top")
 				if f := c.String("from"); f != "" {
 					config.Form.Set("from", f)
@@ -199,10 +205,23 @@ func statsSummary(max *maxcdn.MaxCDN) {
 	check(err)
 
 	stats := data["stats"].(map[string]interface{})
+	if config.CSVOut {
+		statsSummaryCSV(stats)
+	} else {
+		statsSummaryPrint(stats)
+	}
+}
+
+func statsSummaryPrint(stats map[string]interface{}) {
 	fmt.Printf("%15s | %15s | %15s | %15s\n", "total hits", "cache hits", "non-cache hits", "size")
 	fmt.Println("--------------------------------------------------------------------------------")
 	fmt.Printf("%15v | %15v | %15v | %15v\n", stats["hit"], stats["cache_hit"], stats["noncache_hit"], stats["size"])
 	fmt.Println()
+}
+
+func statsSummaryCSV(stats map[string]interface{}) {
+	fmt.Printf("%s,%s,%s,%s\n", "total hits", "cache hits", "non-cache hits", "size")
+	fmt.Printf("%v,%v,%v,%v\n", stats["hit"], stats["cache_hit"], stats["noncache_hit"], stats["size"])
 }
 
 func statsBreakdown(max *maxcdn.MaxCDN) {
@@ -213,9 +232,18 @@ func statsBreakdown(max *maxcdn.MaxCDN) {
 	_, err := max.Get(&data, endpoint, config.Form)
 	check(err)
 
+	stats := data["stats"].([]interface{})
+	if config.CSVOut {
+		statsBreakdownCSV(stats)
+	} else {
+		statsBreakdownPrint(stats)
+	}
+}
+
+func statsBreakdownPrint(stats []interface{}) {
 	fmt.Printf("%25s | %10s | %10s | %10s | %10s\n", "timestamp", "total", "cached", "non-cached", "size")
 	fmt.Println(" -------------------------------------------------------------------------------")
-	for _, s := range data["stats"].([]interface{}) {
+	for _, s := range stats {
 		stats := s.(map[string]interface{})
 		fmt.Printf("%25v | %10v | %10v | %10v | %10v\n",
 			stats["timestamp"],
@@ -224,7 +252,19 @@ func statsBreakdown(max *maxcdn.MaxCDN) {
 			stats["noncache_hit"],
 			stats["size"])
 	}
-	fmt.Println()
+}
+
+func statsBreakdownCSV(stats []interface{}) {
+	fmt.Printf("%s,%s,%s,%s,%s\n", "timestamp", "total", "cached", "non-cached", "size")
+	for _, s := range stats {
+		stats := s.(map[string]interface{})
+		fmt.Printf("%v,%v,%v,%v,%v\n",
+			stats["timestamp"],
+			stats["hit"],
+			stats["cache_hit"],
+			stats["noncache_hit"],
+			stats["size"])
+	}
 }
 
 func popularFiles(max *maxcdn.MaxCDN) {
@@ -234,10 +274,19 @@ func popularFiles(max *maxcdn.MaxCDN) {
 	_, err := max.Get(&data, "/reports/popularfiles.json", config.Form)
 	check(err)
 
+	popular := data["popularfiles"].([]interface{})
+	if config.CSVOut {
+		popularFilesCSV(popular)
+	} else {
+		popularFilesPrint(popular)
+	}
+}
+
+func popularFilesPrint(popular []interface{}) {
 	fmt.Printf("%10s | %s\n", "hits", "file")
 	fmt.Println("   -----------------")
 
-	for i, f := range data["popularfiles"].([]interface{}) {
+	for i, f := range popular {
 		file := f.(map[string]interface{})
 		if config.Top != 0 && i == config.Top {
 			break
@@ -245,6 +294,18 @@ func popularFiles(max *maxcdn.MaxCDN) {
 		fmt.Printf("%10v | %v\n", file["hit"], file["uri"])
 	}
 	fmt.Println()
+}
+
+func popularFilesCSV(popular []interface{}) {
+	fmt.Printf("%s,%s\n", "hits", "file")
+
+	for i, f := range popular {
+		file := f.(map[string]interface{})
+		if config.Top != 0 && i == config.Top {
+			break
+		}
+		fmt.Printf("%v,%v\n", file["hit"], file["uri"])
+	}
 }
 
 func check(err error) {
@@ -286,6 +347,7 @@ type Config struct {
 	Verbose    bool
 	Report     string
 	ReportType string
+	CSVOut     bool
 }
 
 func LoadConfig(file string) (c Config, e error) {
