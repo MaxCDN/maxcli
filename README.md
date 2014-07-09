@@ -75,16 +75,16 @@ make build/all/{{tool}}
 Here's what's available for each tool:
 
 - maxreport
-    - [linux-386](http://get.maxcdn.com/maxreport/linux/386/maxpurge) ([md5](http://get.maxcdn.com/maxreport/linux/386/maxpurge.md5))
-    - [linux-amd64](http://get.maxcdn.com/maxreport/linux/amd64/maxpurge) ([md5](http://get.maxcdn.com/maxreport/linux/amd64/maxpurge.md5))
-    - [linux-arm](http://get.maxcdn.com/maxreport/linux/arm/maxpurge) ([md5](http://get.maxcdn.com/maxreport/linux/arm/maxpurge.md5))
-    - [darwin-386](http://get.maxcdn.com/maxreport/darwin/386/maxpurge) ([md5](http://get.maxcdn.com/maxreport/darwin/386/maxpurge.md5))
-    - [darwin-amd64](http://get.maxcdn.com/maxreport/darwin/amd64/maxpurge) ([md5](http://get.maxcdn.com/maxreport/darwin/amd64/maxpurge.md5))
-    - [freebsd-386](http://get.maxcdn.com/maxreport/freebsd/386/maxpurge) ([md5](http://get.maxcdn.com/maxreport/freebsd/386/maxpurge.md5))
-    - [freebsd-amd64](http://get.maxcdn.com/maxreport/freebsd/amd64/maxpurge) ([md5](http://get.maxcdn.com/maxreport/freebsd/amd64/maxpurge.md5))
-    - [freebsd-arm](http://get.maxcdn.com/maxreport/freebsd/arm/maxpurge) ([md5](http://get.maxcdn.com/maxreport/freebsd/arm/maxpurge.md5))
-    - [windows-386](http://get.maxcdn.com/maxreport/windows/386/maxpurge.exe) ([md5](http://get.maxcdn.com/maxreport/windows/386/maxpurge.exe.md5))
-    - [windows-amd64](http://get.maxcdn.com/maxreport/windows/amd64/maxpurge.exe) ([md5](http://get.maxcdn.com/maxreport/windows/amd64/maxpurge.exe.md5))
+    - [linux-386](http://get.maxcdn.com/maxreport/linux/386/maxreport) ([md5](http://get.maxcdn.com/maxreport/linux/386/maxreport.md5))
+    - [linux-amd64](http://get.maxcdn.com/maxreport/linux/amd64/maxreport) ([md5](http://get.maxcdn.com/maxreport/linux/amd64/maxreport.md5))
+    - [linux-arm](http://get.maxcdn.com/maxreport/linux/arm/maxreport) ([md5](http://get.maxcdn.com/maxreport/linux/arm/maxreport.md5))
+    - [darwin-386](http://get.maxcdn.com/maxreport/darwin/386/maxreport) ([md5](http://get.maxcdn.com/maxreport/darwin/386/maxreport.md5))
+    - [darwin-amd64](http://get.maxcdn.com/maxreport/darwin/amd64/maxreport) ([md5](http://get.maxcdn.com/maxreport/darwin/amd64/maxreport.md5))
+    - [freebsd-386](http://get.maxcdn.com/maxreport/freebsd/386/maxreport) ([md5](http://get.maxcdn.com/maxreport/freebsd/386/maxreport.md5))
+    - [freebsd-amd64](http://get.maxcdn.com/maxreport/freebsd/amd64/maxreport) ([md5](http://get.maxcdn.com/maxreport/freebsd/amd64/maxreport.md5))
+    - [freebsd-arm](http://get.maxcdn.com/maxreport/freebsd/arm/maxreport) ([md5](http://get.maxcdn.com/maxreport/freebsd/arm/maxreport.md5))
+    - [windows-386](http://get.maxcdn.com/maxreport/windows/386/maxreport.exe) ([md5](http://get.maxcdn.com/maxreport/windows/386/maxreport.exe.md5))
+    - [windows-amd64](http://get.maxcdn.com/maxreport/windows/amd64/maxreport.exe) ([md5](http://get.maxcdn.com/maxreport/windows/amd64/maxreport.exe.md5))
 - maxpurge
     - [linux/386](http://get.maxcdn.com/maxpurge/linux/386/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/linux/386/maxpurge.md5))
     - [linux/amd64](http://get.maxcdn.com/maxpurge/linux/amd64/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/linux/amd64/maxpurge.md5))
