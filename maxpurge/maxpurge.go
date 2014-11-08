@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/MaxCDN/go-maxcdn"
-	"github.com/jmervine/cli"
+	"github.com/codegangsta/cli"
 	"gopkg.in/yaml.v1"
 )
 
@@ -58,14 +58,14 @@ Sample configuration:
 	cli.VersionPrinter = versionPrinter
 
 	app.Flags = []cli.Flag{
-		cli.StringFlag{"config, c", "~/.maxcdn.yml", "yaml file containing all required args"},
-		cli.StringFlag{"alias, a", "", "[required] consumer alias"},
-		cli.StringFlag{"token, t", "", "[required] consumer token"},
-		cli.StringFlag{"secret, s", "", "[required] consumer secret"},
-		cli.IntSliceFlag{"zone, z", new(cli.IntSlice), "[required] zone to be purged"},
-		cli.StringSliceFlag{"file, f", new(cli.StringSlice), "cached file to be purged"},
-		cli.StringFlag{"host, H", "", "override default API host"},
-		cli.BoolFlag{"verbose", "display verbose http transport information"},
+		cli.StringFlag{Name: "config, c", Value: "~/.maxcdn.yml", Usage: "yaml file containing all required args"},
+		cli.StringFlag{Name: "alias, a", Value: "", Usage: "[required] consumer alias"},
+		cli.StringFlag{Name: "token, t", Value: "", Usage: "[required] consumer token"},
+		cli.StringFlag{Name: "secret, s", Value: "", Usage: "[required] consumer secret"},
+		cli.IntSliceFlag{Name: "zone, z", Value: new(cli.IntSlice), Usage: "[required] zone to be purged"},
+		cli.StringSliceFlag{Name: "file, f", Value: new(cli.StringSlice), Usage: "cached file to be purged"},
+		cli.StringFlag{Name: "host, H", Value: "", Usage: "override default API host"},
+		cli.BoolFlag{Name: "verbose", Usage: "display verbose http transport information"},
 	}
 
 	app.Action = func(c *cli.Context) {

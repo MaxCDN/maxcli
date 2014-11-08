@@ -13,7 +13,7 @@ import (
 	"time"
 
 	"github.com/MaxCDN/go-maxcdn"
-	"github.com/jmervine/cli"
+	"github.com/codegangsta/cli"
 	"gopkg.in/yaml.v1"
 )
 
@@ -124,25 +124,25 @@ Sample configuration:
 	cli.VersionPrinter = versionPrinter
 
 	app.Flags = []cli.Flag{
-		cli.StringFlag{"config, c", "~/.maxcdn.yml", "yaml file containing all required args"},
-		cli.StringFlag{"alias, a", "", "[required] consumer alias"},
-		cli.StringFlag{"token, t", "", "[required] consumer token"},
-		cli.StringFlag{"secret, s", "", "[required] consumer secret"},
-		cli.StringFlag{"format, f", "raw", "nginx, raw, json, jsonpp"},
-		cli.IntFlag{"interval, i", 5, "poll interval in seconds (min: 5)"},
-		cli.BoolFlag{"no-follow, n", "print interval and exit"},
-		cli.BoolFlag{"quiet, q", "hide 'empty' messages"},
-		cli.BoolFlag{"verbose", "display verbose http transport information"},
+		cli.StringFlag{Name: "config, c", Value: "~/.maxcdn.yml", Usage: "yaml file containing all required args"},
+		cli.StringFlag{Name: "alias, a", Value: "", Usage: "[required] consumer alias"},
+		cli.StringFlag{Name: "token, t", Value: "", Usage: "[required] consumer token"},
+		cli.StringFlag{Name: "secret, s", Value: "", Usage: "[required] consumer secret"},
+		cli.StringFlag{Name: "format, f", Value: "raw", Usage: "nginx, raw, json, jsonpp"},
+		cli.IntFlag{Name: "interval, i", Value: 5, Usage: "poll interval in seconds (min: 5)"},
+		cli.BoolFlag{Name: "no-follow, n", Usage: "print interval and exit"},
+		cli.BoolFlag{Name: "quiet, q", Usage: "hide 'empty' messages"},
+		cli.BoolFlag{Name: "verbose", Usage: "display verbose http transport information"},
 
 		// Filters
-		cli.StringFlag{"zones", "", "filter: by zone(s)"},
-		cli.StringFlag{"uri", "", "filter: uri"},
-		cli.StringFlag{"status", "", "filter: status"},
-		cli.StringFlag{"ssl", "", "filter: ssl"},
-		cli.StringFlag{"ua", "", "filter: user agent"},
-		cli.StringFlag{"referer", "", "filter: referer"},
-		cli.StringFlag{"pop", "", "filter: pop"},
-		cli.StringFlag{"qs", "", "filter: query string"},
+		cli.StringFlag{Name: "zones", Value: "", Usage: "filter: by zone(s)"},
+		cli.StringFlag{Name: "uri", Value: "", Usage: "filter: uri"},
+		cli.StringFlag{Name: "status", Value: "", Usage: "filter: status"},
+		cli.StringFlag{Name: "ssl", Value: "", Usage: "filter: ssl"},
+		cli.StringFlag{Name: "ua", Value: "", Usage: "filter: user agent"},
+		cli.StringFlag{Name: "referer", Value: "", Usage: "filter: referer"},
+		cli.StringFlag{Name: "pop", Value: "", Usage: "filter: pop"},
+		cli.StringFlag{Name: "qs", Value: "", Usage: "filter: query string"},
 	}
 
 	app.Action = func(c *cli.Context) {

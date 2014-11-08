@@ -11,10 +11,10 @@ PLATFORMS=darwin/386 \
 			windows/amd64
 
 # todo: find a cleaner way
-BUILD_TOOLS=$(shell find ./ -maxdepth 1 -type d -name "max*" | sed 's/\./build/')
-FORMAT_TOOLS=$(shell find ./ -maxdepth 1 -type d -name "max*" | sed 's/\./format/')
-DEPLOY_TOOLS=$(shell find ./ -maxdepth 1 -type d -name "max*" | sed 's/\./deploy/')
-INSTALL_TOOLS=$(shell find ./ -maxdepth 1 -type d -name "max*" | sed 's/\./install/')
+BUILD_TOOLS=$(shell find . -maxdepth 1 -type d -name "max*" | sed 's/\./build/')
+FORMAT_TOOLS=$(shell find . -maxdepth 1 -type d -name "max*" | sed 's/\./format/')
+DEPLOY_TOOLS=$(shell find . -maxdepth 1 -type d -name "max*" | sed 's/\./deploy/')
+INSTALL_TOOLS=$(shell find . -maxdepth 1 -type d -name "max*" | sed 's/\./install/')
 
 # tests
 ###

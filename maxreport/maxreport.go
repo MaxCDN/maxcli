@@ -10,7 +10,7 @@ import (
 	"text/template"
 
 	"github.com/MaxCDN/go-maxcdn"
-	"github.com/jmervine/cli"
+	"github.com/codegangsta/cli"
 	"gopkg.in/yaml.v1"
 )
 
@@ -67,12 +67,12 @@ Notes:
 
 	// Setup global flags
 	app.Flags = []cli.Flag{
-		cli.StringFlag{"config, c", "~/.maxcdn.yml", "yaml file containing all required args"},
-		cli.StringFlag{"alias, a", "", "[required] consumer alias"},
-		cli.StringFlag{"token, t", "", "[required] consumer token"},
-		cli.StringFlag{"secret, s", "", "[required] consumer secret"},
-		cli.StringFlag{"host, H", "", "override default API host"},
-		cli.BoolFlag{"verbose", "display verbose http transport information"},
+		cli.StringFlag{Name: "config, c", Value: "~/.maxcdn.yml", Usage: "yaml file containing all required args"},
+		cli.StringFlag{Name: "alias, a", Value: "", Usage: "[required] consumer alias"},
+		cli.StringFlag{Name: "token, t", Value: "", Usage: "[required] consumer token"},
+		cli.StringFlag{Name: "secret, s", Value: "", Usage: "[required] consumer secret"},
+		cli.StringFlag{Name: "host, H", Value: "", Usage: "override default API host"},
+		cli.BoolFlag{Name: "verbose", Usage: "display verbose http transport information"},
 	}
 
 	// Define clobal arguments for inclusion with all commands.
@@ -125,10 +125,10 @@ Notes:
 			Usage:       "stats report",
 			Description: "Gets the total usage statistics for your account, optionally broken up by {report_type}. If no {report_type} is given the request will return the total usage on your account.",
 			Flags: []cli.Flag{
-				cli.StringFlag{"from", "", "report start data (YYYY-MM-DD)"},
-				cli.StringFlag{"to", "", "report end data (YYYY-MM-DD)"},
-				cli.StringFlag{"type, t", "", "report type: hourly, daily, monthly"},
-				cli.BoolFlag{"csv", "output comma seperated values"},
+				cli.StringFlag{Name: "from", Value: "", Usage: "report start data (YYYY-MM-DD)"},
+				cli.StringFlag{Name: "to", Value: "", Usage: "report end data (YYYY-MM-DD)"},
+				cli.StringFlag{Name: "type, t", Value: "", Usage: "report type: hourly , daily , monthly"},
+				cli.BoolFlag{Name: "csv", Usage: "output comma seperated values"},
 			},
 			Action: func(c *cli.Context) {
 				globals(c)
@@ -151,10 +151,10 @@ Notes:
 			Usage:       "popular files report",
 			Description: "Gets the most popularly requested files for your account, grouped into daily statistics.",
 			Flags: []cli.Flag{
-				cli.StringFlag{"from", "", "report start data (YYYY-MM-DD)"},
-				cli.StringFlag{"to", "", "report end data (YYYY-MM-DD)"},
-				cli.IntFlag{"top, t", 0, "show top N results, zero shows all"},
-				cli.BoolFlag{"csv", "output comma seperated values"},
+				cli.StringFlag{Name: "from", Value: "", Usage: "report start data (YYYY-MM-DD)"},
+				cli.StringFlag{Name: "to", Value: "", Usage: "report end data (YYYY-MM-DD)"},
+				cli.IntFlag{Name: "top, t", Value: 0, Usage: "show top N results, zero shows all"},
+				cli.BoolFlag{Name: "csv", Usage: "output comma seperated values"},
 			},
 			Action: func(c *cli.Context) {
 				globals(c)
