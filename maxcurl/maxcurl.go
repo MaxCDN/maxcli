@@ -12,7 +12,7 @@ import (
 	"text/template"
 
 	"github.com/MaxCDN/go-maxcdn"
-	"github.com/jmervine/cli"
+	"github.com/codegangsta/cli"
 	"gopkg.in/yaml.v1"
 )
 
@@ -75,15 +75,15 @@ Sample configuration:
 	cli.VersionPrinter = versionPrinter
 
 	app.Flags = []cli.Flag{
-		cli.StringFlag{"config, c", "~/.maxcdn.yml", "yaml file containing all required args"},
-		cli.StringFlag{"alias, a", "", "[required] consumer alias"},
-		cli.StringFlag{"token, t", "", "[required] consumer token"},
-		cli.StringFlag{"secret, s", "", "[required] consumer secret"},
-		cli.StringFlag{"method, X", "GET", "request method"},
-		cli.StringFlag{"host, H", "", "override default API host"},
-		cli.BoolFlag{"headers, i", "show headers with body"},
-		cli.BoolFlag{"pretty, pp", "pretty print json output"},
-		cli.BoolFlag{"verbose", "display verbose http transport information"},
+		cli.StringFlag{Name: "config, c", Value: "~/.maxcdn.yml", Usage: "yaml file containing all required args"},
+		cli.StringFlag{Name: "alias, a", Value: "", Usage: "[required] consumer alias"},
+		cli.StringFlag{Name: "token, t", Value: "", Usage: "[required] consumer token"},
+		cli.StringFlag{Name: "secret, s", Value: "", Usage: "[required] consumer secret"},
+		cli.StringFlag{Name: "method, X", Value: "GET", Usage: "request method"},
+		cli.StringFlag{Name: "host, H", Value: "", Usage: "override default API host"},
+		cli.BoolFlag{Name: "headers, i", Usage: "show headers with body"},
+		cli.BoolFlag{Name: "pretty, pp", Usage: "pretty print json output"},
+		cli.BoolFlag{Name: "verbose", Usage: "display verbose http transport information"},
 	}
 
 	app.Action = func(c *cli.Context) {
