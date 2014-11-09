@@ -45,14 +45,16 @@ Sample configuration:
     alias: YOUR_ALIAS
     token: YOUR_TOKEN
     secret: YOUR_SECRET
-    zone: YOUR_ZONE_ID
+    zones:
+        - ZONE_ID_1
+        - ZONE_ID_2
 
 `
 
 	app := cli.NewApp()
 
 	app.Name = "maxpurge"
-	app.Version = "1.0.1"
+	app.Version = "1.0.2"
 
 	cli.HelpPrinter = helpPrinter
 	cli.VersionPrinter = versionPrinter
