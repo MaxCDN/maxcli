@@ -15,6 +15,7 @@ BUILD_TOOLS=$(shell find . -maxdepth 1 -type d -name "max*" | sed 's/\./build/')
 FORMAT_TOOLS=$(shell find . -maxdepth 1 -type d -name "max*" | sed 's/\./format/')
 DEPLOY_TOOLS=$(shell find . -maxdepth 1 -type d -name "max*" | sed 's/\./deploy/')
 INSTALL_TOOLS=$(shell find . -maxdepth 1 -type d -name "max*" | sed 's/\./install/')
+GET_TOOLS=$(shell find . -maxdepth 1 -type d -name "max*" | sed 's/\./get/')
 
 # tests
 ###
@@ -24,6 +25,13 @@ test: format .PHONY
 test/%: .PHONY
 	# Running Test: $*
 	./_test/shunt.sh --verbose ./_test/$*_test.sh
+
+# get
+###
+get: $(GET_TOOLS) .PHONY
+
+get/%: .PHONY
+	cd $*; go get
 
 # format
 ###
