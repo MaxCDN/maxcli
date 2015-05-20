@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/url"
@@ -118,7 +119,7 @@ Sample configuration:
 
 	app := cli.NewApp()
 	app.Name = "maxtail"
-	app.Version = "0.0.3-alpha"
+	app.Version = "0.0.4-alpha"
 
 	cli.HelpPrinter = helpPrinter
 	cli.VersionPrinter = versionPrinter
@@ -398,8 +399,8 @@ func check(err error) {
 
 // Replace cli's default help printer with cli's default help printer
 // plus an exit at the end.
-func helpPrinter(templ string, data interface{}) {
-	w := tabwriter.NewWriter(os.Stdout, 0, 8, 1, '\t', 0)
+func helpPrinter(out io.Writer, templ string, data interface{}) {
+	w := tabwriter.NewWriter(out, 0, 8, 1, '\t', 0)
 	t := template.Must(template.New("help").Parse(templ))
 	err := t.Execute(w, data)
 	check(err)
