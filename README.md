@@ -7,7 +7,7 @@ Collection of CLI tools for interfacing with MaxCDN's REST API
 
 #### Note
 
-`maxtail` currently isn't working as intended. See [issue #2](https://github.com/MaxCDN/maxcdn-tools/issues/2) for updates.
+`maxtail` currently isn't working as intended. See [issue #2](https://github.com/MaxCDN/maxcli/issues/2) for updates.
 
 Configuration
 -------------
@@ -34,14 +34,14 @@ This can also be installed for system wide use if your `GOBIN` is set via the fo
 # via 'go get' && 'go install'
 ##
 
-go get github.com/MaxCDN/maxcdn-tools/{{tool}}
-go install github.com/MaxCDN/maxcdn-tools/{{tool}}
+go get github.com/MaxCDN/maxcli/{{tool}}
+go install github.com/MaxCDN/maxcli/{{tool}}
 
 # manually
 ##
 
-git clone https://github.com/MaxCDN/maxcdn-tools
-cd maxcdn-tools
+git clone https://github.com/MaxCDN/maxcli
+cd maxcli
 
 # build and install all tools
 make build install

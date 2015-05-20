@@ -72,8 +72,8 @@ This can also be installed for system wide use if your `GOBIN` is set via the fo
 # via 'go get' && 'go install'
 ##
 
-$ go get github.com/MaxCDN/maxcdn-tools/maxcurl
-$ go install github.com/MaxCDN/maxcdn-tools/maxcurl
+$ go get github.com/MaxCDN/maxcli/maxcurl
+$ go install github.com/MaxCDN/maxcli/maxcurl
 $ maxcurl -h
 Usage: maxcurl [arguments...] PATH
 # ...
@@ -81,7 +81,7 @@ Usage: maxcurl [arguments...] PATH
 # manually
 ##
 
-git clone https://github.com/MaxCDN/maxcdn-tools
-cd maxcdn-tools
+git clone https://github.com/MaxCDN/maxcli
+cd maxcli
 make build/maxcurl install/maxcurl
 ```
