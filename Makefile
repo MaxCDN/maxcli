@@ -49,7 +49,7 @@ install: $(INSTALL_TOOLS) .PHONY
 
 build/all/%: .PHONY
 	make format/$*
-	bash build-all.bash $*
+	bash scripts/build-all.bash $*
 
 build/all: .PHONY
 	# exec tools/build-all.sh
