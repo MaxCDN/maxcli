@@ -4,9 +4,16 @@ PLATFORMS=darwin/386 \
 			freebsd/386 \
 			freebsd/amd64 \
 			freebsd/arm \
+			openbsd/386 \
+			openbsd/amd64 \
+			openbsd/arm \
+			netbsd/386 \
+			netbsd/amd64 \
+			netbsd/arm \
 			linux/386 \
 			linux/amd64 \
 			linux/arm \
+			solaris/amd64 \
 			windows/386 \
 			windows/amd64
 
@@ -49,7 +56,7 @@ install: $(INSTALL_TOOLS) .PHONY
 
 build/all/%: .PHONY
 	make format/$*
-	bash build-all.bash $*
+	bash scripts/build-all.bash $*
 
 build/all: .PHONY
 	# exec tools/build-all.sh

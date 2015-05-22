@@ -136,8 +136,8 @@ This can also be installed for system wide use if your `GOBIN` is set via the fo
 # via 'go get' && 'go install'
 ##
 
-$ go get github.com/MaxCDN/maxcdn-tools/maxtail
-$ go install github.com/MaxCDN/maxcdn-tools/maxtail
+$ go get github.com/MaxCDN/maxcli/maxtail
+$ go install github.com/MaxCDN/maxcli/maxtail
 $ maxtail -h
 Usage: maxtail [arguments...] PATH
 # ...
@@ -145,7 +145,7 @@ Usage: maxtail [arguments...] PATH
 # manually
 ##
 
-git clone https://github.com/MaxCDN/maxcdn-tools
-cd maxcdn-tools
+git clone https://github.com/MaxCDN/maxcli
+cd maxcli
 make build/maxtail install/maxtail
 ```
