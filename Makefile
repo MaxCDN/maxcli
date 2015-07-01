@@ -60,7 +60,7 @@ build/all/%: .PHONY
 
 build/all: .PHONY
 	# exec tools/build-all.sh
-	bash build-all.bash
+	bash scripts/build-all.bash
 
 build/%: .PHONY
 	# Building: $*

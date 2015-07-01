@@ -1,6 +1,6 @@
 #!/bin/bash
 
-archs=`ls $(go env GOROOT)/pkg | grep -v "obj\|tool\|race" | grep "darwin\|freebsd\|linux\|freebsd\|openbsd\|solaris\|windows`
+archs="$(ls `go env GOROOT`/pkg | grep -v "obj\|tool\|race" | grep "darwin\|freebsd\|linux\|freebsd\|openbsd\|solaris\|windows")"
 
 if ! test "$archs"; then
   echo "no valid os/arch pairs were found to build"
