@@ -119,7 +119,7 @@ Sample configuration:
 
 	app := cli.NewApp()
 	app.Name = "maxtail"
-	app.Version = "0.0.5-alpha"
+	app.Version = "0.0.6-alpha"
 
 	cli.HelpPrinter = helpPrinter
 	cli.VersionPrinter = versionPrinter
@@ -312,11 +312,11 @@ func main() {
 					   'Status Bytes Referer UserAgent OriginTime'
 					*/
 					fmt.Printf("%s %s %d [%s] %q %d %d %q %q %.3f\n",
-						line.ClientIp,
+						line.ClientIP,
 						line.CacheStatus,
 						line.ZoneID,
 						line.Time,
-						line.Uri,
+						line.URI,
 						line.Status,
 						line.Bytes,
 						line.Referer,
