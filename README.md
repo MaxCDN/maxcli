@@ -20,6 +20,8 @@ All tools use a configuration file as it's last means of getting `alias`, `secre
 alias: YOUR_ALIAS
 token: YOUR_TOKEN
 secret: YOUR_SECRET
+zones:
+  - YOUR_ZONE
 ```
 
 See [sample.maxcdn.yml](sample.maxcdn.yml) for a more complete example.
@@ -32,10 +34,7 @@ This can also be installed for system wide use if your `GOBIN` is set via the fo
 
 ```bash
 # via 'go get' && 'go install'
-##
-
-go get github.com/MaxCDN/maxcli/{{tool}}
-go install github.com/MaxCDN/maxcli/{{tool}}
+go get -u github.com/MaxCDN/maxcli/{{tool}}
 
 # manually
 ##
@@ -56,96 +55,4 @@ move {{tool}} c:\path\to\GOBIN
 ```
 
 See individal tool README for additional instructions.
-
-Prebuilt Binaries:
-------------------
-
-A set of binaries for all tools have been prebuilt using golang's cross compiler on `Linux 3.8.0-36-generic #52~precise1-Ubuntu SMP x86_64`.
-
-**Building All Binaries:**
-
-```bash
-make setup # only once, this takes a while
-make build/all
-
-# or
-make build/all/{{tool}}
-```
-
-Here's what's available for each tool:
-
-- maxreport
-    - [linux-386](http://get.maxcdn.com/maxreport/linux/386/maxreport) ([md5](http://get.maxcdn.com/maxreport/linux/386/maxreport.md5))
-    - [linux-amd64](http://get.maxcdn.com/maxreport/linux/amd64/maxreport) ([md5](http://get.maxcdn.com/maxreport/linux/amd64/maxreport.md5))
-    - [linux-arm](http://get.maxcdn.com/maxreport/linux/arm/maxreport) ([md5](http://get.maxcdn.com/maxreport/linux/arm/maxreport.md5))
-    - [darwin-386](http://get.maxcdn.com/maxreport/darwin/386/maxreport) ([md5](http://get.maxcdn.com/maxreport/darwin/386/maxreport.md5))
-    - [darwin-amd64](http://get.maxcdn.com/maxreport/darwin/amd64/maxreport) ([md5](http://get.maxcdn.com/maxreport/darwin/amd64/maxreport.md5))
-    - [freebsd-386](http://get.maxcdn.com/maxreport/freebsd/386/maxreport) ([md5](http://get.maxcdn.com/maxreport/freebsd/386/maxreport.md5))
-    - [freebsd-amd64](http://get.maxcdn.com/maxreport/freebsd/amd64/maxreport) ([md5](http://get.maxcdn.com/maxreport/freebsd/amd64/maxreport.md5))
-    - [freebsd-arm](http://get.maxcdn.com/maxreport/freebsd/arm/maxreport) ([md5](http://get.maxcdn.com/maxreport/freebsd/arm/maxreport.md5))
-    - [openbsd-386](http://get.maxcdn.com/maxreport/openbsd/386/maxreport) ([md5](http://get.maxcdn.com/maxreport/openbsd/386/maxreport.md5))
-    - [openbsd-amd64](http://get.maxcdn.com/maxreport/openbsd/amd64/maxreport) ([md5](http://get.maxcdn.com/maxreport/openbsd/amd64/maxreport.md5))
-    - [openbsd-arm](http://get.maxcdn.com/maxreport/openbsd/arm/maxreport) ([md5](http://get.maxcdn.com/maxreport/openbsd/arm/maxreport.md5))
-    - [netbsd-386](http://get.maxcdn.com/maxreport/netbsd/386/maxreport) ([md5](http://get.maxcdn.com/maxreport/netbsd/386/maxreport.md5))
-    - [netbsd-amd64](http://get.maxcdn.com/maxreport/netbsd/amd64/maxreport) ([md5](http://get.maxcdn.com/maxreport/netbsd/amd64/maxreport.md5))
-    - [netbsd-arm](http://get.maxcdn.com/maxreport/netbsd/arm/maxreport) ([md5](http://get.maxcdn.com/maxreport/netbsd/arm/maxreport.md5))
-    - [windows-386](http://get.maxcdn.com/maxreport/windows/386/maxreport.exe) ([md5](http://get.maxcdn.com/maxreport/windows/386/maxreport.exe.md5))
-    - [windows-amd64](http://get.maxcdn.com/maxreport/windows/amd64/maxreport.exe) ([md5](http://get.maxcdn.com/maxreport/windows/amd64/maxreport.exe.md5))
-    - [solaris-amd64](http://get.maxcdn.com/maxreport/solaris/amd64/maxreport.exe) ([md5](http://get.maxcdn.com/maxreport/solaris/amd64/maxreport.exe.md5))
-- maxpurge
-    - [linux-386](http://get.maxcdn.com/maxpurge/linux/386/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/linux/386/maxpurge.md5))
-    - [linux-amd64](http://get.maxcdn.com/maxpurge/linux/amd64/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/linux/amd64/maxpurge.md5))
-    - [linux-arm](http://get.maxcdn.com/maxpurge/linux/arm/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/linux/arm/maxpurge.md5))
-    - [darwin-386](http://get.maxcdn.com/maxpurge/darwin/386/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/darwin/386/maxpurge.md5))
-    - [darwin-amd64](http://get.maxcdn.com/maxpurge/darwin/amd64/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/darwin/amd64/maxpurge.md5))
-    - [freebsd-386](http://get.maxcdn.com/maxpurge/freebsd/386/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/freebsd/386/maxpurge.md5))
-    - [freebsd-amd64](http://get.maxcdn.com/maxpurge/freebsd/amd64/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/freebsd/amd64/maxpurge.md5))
-    - [freebsd-arm](http://get.maxcdn.com/maxpurge/freebsd/arm/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/freebsd/arm/maxpurge.md5))
-    - [openbsd-386](http://get.maxcdn.com/maxpurge/openbsd/386/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/openbsd/386/maxpurge.md5))
-    - [openbsd-amd64](http://get.maxcdn.com/maxpurge/openbsd/amd64/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/openbsd/amd64/maxpurge.md5))
-    - [openbsd-arm](http://get.maxcdn.com/maxpurge/openbsd/arm/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/openbsd/arm/maxpurge.md5))
-    - [netbsd-386](http://get.maxcdn.com/maxpurge/netbsd/386/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/netbsd/386/maxpurge.md5))
-    - [netbsd-amd64](http://get.maxcdn.com/maxpurge/netbsd/amd64/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/netbsd/amd64/maxpurge.md5))
-    - [netbsd-arm](http://get.maxcdn.com/maxpurge/netbsd/arm/maxpurge) ([md5](http://get.maxcdn.com/maxpurge/netbsd/arm/maxpurge.md5))
-    - [windows-386](http://get.maxcdn.com/maxpurge/windows/386/maxpurge.exe) ([md5](http://get.maxcdn.com/maxpurge/windows/386/maxpurge.exe.md5))
-    - [windows-amd64](http://get.maxcdn.com/maxpurge/windows/amd64/maxpurge.exe) ([md5](http://get.maxcdn.com/maxpurge/windows/amd64/maxpurge.exe.md5))
-    - [solaris-amd64](http://get.maxcdn.com/maxpurge/solaris/amd64/maxpurge.exe) ([md5](http://get.maxcdn.com/maxpurge/solaris/amd64/maxpurge.exe.md5))
-- maxcurl
-    - [linux-386](http://get.maxcdn.com/maxcurl/linux/386/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/linux/386/maxcurl.md5))
-    - [linux-amd64](http://get.maxcdn.com/maxcurl/linux/amd64/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/linux/amd64/maxcurl.md5))
-    - [linux-arm](http://get.maxcdn.com/maxcurl/linux/arm/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/linux/arm/maxcurl.md5))
-    - [darwin-386](http://get.maxcdn.com/maxcurl/darwin/386/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/darwin/386/maxcurl.md5))
-    - [darwin-amd64](http://get.maxcdn.com/maxcurl/darwin/amd64/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/darwin/amd64/maxcurl.md5))
-    - [freebsd-386](http://get.maxcdn.com/maxcurl/freebsd/386/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/freebsd/386/maxcurl.md5))
-    - [freebsd-amd64](http://get.maxcdn.com/maxcurl/freebsd/amd64/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/freebsd/amd64/maxcurl.md5))
-    - [freebsd-arm](http://get.maxcdn.com/maxcurl/freebsd/arm/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/freebsd/arm/maxcurl.md5))
-    - [openbsd-386](http://get.maxcdn.com/maxcurl/openbsd/386/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/openbsd/386/maxcurl.md5))
-    - [openbsd-amd64](http://get.maxcdn.com/maxcurl/openbsd/amd64/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/openbsd/amd64/maxcurl.md5))
-    - [openbsd-arm](http://get.maxcdn.com/maxcurl/openbsd/arm/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/openbsd/arm/maxcurl.md5))
-    - [netbsd-386](http://get.maxcdn.com/maxcurl/netbsd/386/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/netbsd/386/maxcurl.md5))
-    - [netbsd-amd64](http://get.maxcdn.com/maxcurl/netbsd/amd64/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/netbsd/amd64/maxcurl.md5))
-    - [netbsd-arm](http://get.maxcdn.com/maxcurl/netbsd/arm/maxcurl) ([md5](http://get.maxcdn.com/maxcurl/netbsd/arm/maxcurl.md5))
-    - [windows-386](http://get.maxcdn.com/maxcurl/windows/386/maxcurl.exe) ([md5](http://get.maxcdn.com/maxcurl/windows/386/maxcurl.exe.md5))
-    - [windows-amd64](http://get.maxcdn.com/maxcurl/windows/amd64/maxcurl.exe) ([md5](http://get.maxcdn.com/maxcurl/windows/amd64/maxcurl.exe.md5))
-    - [solaris-amd64](http://get.maxcdn.com/maxcurl/solaris/amd64/maxcurl.exe) ([md5](http://get.maxcdn.com/maxcurl/solaris/amd64/maxcurl.exe.md5))
-- maxtail
-    - [linux-386](http://get.maxcdn.com/maxtail/linux/386/maxtail) ([md5](http://get.maxcdn.com/maxtail/linux/386/maxtail.md5))
-    - [linux-amd64](http://get.maxcdn.com/maxtail/linux/amd64/maxtail) ([md5](http://get.maxcdn.com/maxtail/linux/amd64/maxtail.md5))
-    - [linux-arm](http://get.maxcdn.com/maxtail/linux/arm/maxtail) ([md5](http://get.maxcdn.com/maxtail/linux/arm/maxtail.md5))
-    - [darwin-386](http://get.maxcdn.com/maxtail/darwin/386/maxtail) ([md5](http://get.maxcdn.com/maxtail/darwin/386/maxtail.md5))
-    - [darwin-amd64](http://get.maxcdn.com/maxtail/darwin/amd64/maxtail) ([md5](http://get.maxcdn.com/maxtail/darwin/amd64/maxtail.md5))
-    - [freebsd-386](http://get.maxcdn.com/maxtail/freebsd/386/maxtail) ([md5](http://get.maxcdn.com/maxtail/freebsd/386/maxtail.md5))
-    - [freebsd-amd64](http://get.maxcdn.com/maxtail/freebsd/amd64/maxtail) ([md5](http://get.maxcdn.com/maxtail/freebsd/amd64/maxtail.md5))
-    - [freebsd-arm](http://get.maxcdn.com/maxtail/freebsd/arm/maxtail) ([md5](http://get.maxcdn.com/maxtail/freebsd/arm/maxtail.md5))
-    - [openbsd-386](http://get.maxcdn.com/maxtail/openbsd/386/maxtail) ([md5](http://get.maxcdn.com/maxtail/openbsd/386/maxtail.md5))
-    - [openbsd-amd64](http://get.maxcdn.com/maxtail/openbsd/amd64/maxtail) ([md5](http://get.maxcdn.com/maxtail/openbsd/amd64/maxtail.md5))
-    - [openbsd-arm](http://get.maxcdn.com/maxtail/openbsd/arm/maxtail) ([md5](http://get.maxcdn.com/maxtail/openbsd/arm/maxtail.md5))
-    - [netbsd-386](http://get.maxcdn.com/maxtail/netbsd/386/maxtail) ([md5](http://get.maxcdn.com/maxtail/netbsd/386/maxtail.md5))
-    - [netbsd-amd64](http://get.maxcdn.com/maxtail/netbsd/amd64/maxtail) ([md5](http://get.maxcdn.com/maxtail/netbsd/amd64/maxtail.md5))
-    - [netbsd-arm](http://get.maxcdn.com/maxtail/netbsd/arm/maxtail) ([md5](http://get.maxcdn.com/maxtail/netbsd/arm/maxtail.md5))
-    - [windows-386](http://get.maxcdn.com/maxtail/windows/386/maxtail.exe) ([md5](http://get.maxcdn.com/maxtail/windows/386/maxtail.exe.md5))
-    - [windows-amd64](http://get.maxcdn.com/maxtail/windows/amd64/maxtail.exe) ([md5](http://get.maxcdn.com/maxtail/windows/amd64/maxtail.exe.md5))
-    - [solaris-amd64](http://get.maxcdn.com/maxtail/solaris/amd64/maxtail.exe) ([md5](http://get.maxcdn.com/maxtail/solaris/amd64/maxtail.exe.md5))
-
-> Note: As of yet, these binaries have not been tested on all OS/ARCH combinations.
 
