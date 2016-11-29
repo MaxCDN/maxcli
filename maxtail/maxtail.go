@@ -119,7 +119,7 @@ Sample configuration:
 
 	app := cli.NewApp()
 	app.Name = "maxtail"
-	app.Version = "0.0.6-alpha"
+	app.Version = "0.0.7-alpha"
 
 	cli.HelpPrinter = helpPrinter
 	cli.VersionPrinter = versionPrinter
