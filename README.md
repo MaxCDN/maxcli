@@ -56,3 +56,44 @@ move {{tool}} c:\path\to\GOBIN
 
 See individal tool README for additional instructions.
 
+Prebuilt Binaries:
+------------------
+
+A set of binaries for all tools have been prebuilt using golang's cross compiler.
+
+**Building All Binaries:**
+
+```bash
+make build/all
+
+# or
+make build/all/{{tool}}
+```
+
+Here's what's available for each tool:
+
+- maxreport
+    - [linux-amd64](_builds/maxreport/linux/amd64/maxreport) ([md5](_builds/maxreport/linux/amd64/maxreport.md5))
+    - [darwin-amd64](_builds/maxreport/darwin/amd64/maxreport) ([md5](_builds/maxreport/darwin/amd64/maxreport.md5))
+    - [windows-amd64](_builds/maxreport/windows/amd64/maxreport.exe) ([md5](_builds/maxreport/windows/amd64/maxreport.exe.md5))
+- maxpurge
+    - [linux-amd64](_builds/maxpurge/linux/amd64/maxpurge) ([md5](_builds/maxpurge/linux/amd64/maxpurge.md5))
+    - [darwin-amd64](_builds/maxpurge/darwin/amd64/maxpurge) ([md5](_builds/maxpurge/darwin/amd64/maxpurge.md5))
+    - [windows-amd64](_builds/maxpurge/windows/amd64/maxpurge.exe) ([md5](_builds/maxpurge/windows/amd64/maxpurge.exe.md5))
+- maxcurl
+    - [linux-amd64](_builds/maxcurl/linux/amd64/maxcurl) ([md5](_builds/maxcurl/linux/amd64/maxcurl.md5))
+    - [darwin-amd64](_builds/maxcurl/darwin/amd64/maxcurl) ([md5](_builds/maxcurl/darwin/amd64/maxcurl.md5))
+    - [windows-amd64](_builds/maxcurl/windows/amd64/maxcurl.exe) ([md5](_builds/maxcurl/windows/amd64/maxcurl.exe.md5))
+- maxtail
+    - [linux-amd64](_builds/maxtail/linux/amd64/maxtail) ([md5](_builds/maxtail/linux/amd64/maxtail.md5))
+    - [darwin-amd64](_builds/maxtail/darwin/amd64/maxtail) ([md5](_builds/maxtail/darwin/amd64/maxtail.md5))
+    - [windows-amd64](_builds/maxtail/windows/amd64/maxtail.exe) ([md5](_builds/maxtail/windows/amd64/maxtail.exe.md5))
+
+To cross compile your own binary for a different OS / ARCH, run the following...
+
+```
+env GOOS={{OS}} GOARCH={{ARCH}} go build github.com/MaxCDN/maxcli/{{tool}}
+```
+
+**Requires Go 1.5 or higher**
+
