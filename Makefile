@@ -21,7 +21,7 @@ test/%: .PHONY
 get: $(GET_TOOLS) .PHONY
 
 get/%: .PHONY
-	cd $*; go get
+	cd $*; dep ensure
 
 # format
 ###
