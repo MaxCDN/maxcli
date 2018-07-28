@@ -13,7 +13,7 @@ Configuration
 -------------
 
 All tools use a configuration file as it's last means of getting `alias`, `secret` and
-`token`. See individal tool `help` for addtional options available in your configuration.
+`token`. See individual tool `help` for additional options available in your configuration.
 
 ```yaml
 ---
@@ -54,7 +54,7 @@ go build
 move {{tool}} c:\path\to\GOBIN
 ```
 
-See individal tool README for additional instructions.
+See individual tool README for additional instructions.
 
 Prebuilt Binaries:
 ------------------
